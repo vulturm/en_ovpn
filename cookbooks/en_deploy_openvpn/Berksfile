@@ -1,0 +1,6 @@
+source 'https://supermarket.chef.io'
+
+metadata
+
+cookbook 'openvpn', git: 'git://github.com/xxmitsu/eG-ovpn.git', rel: 'cookbooks/openvpn'
+cookbook 'chef-solo-search', git: 'git://github.com/xxmitsu/eG-ovpn.git', rel: 'cookbooks/chef-solo-search'
