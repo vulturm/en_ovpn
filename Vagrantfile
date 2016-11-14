@@ -72,13 +72,13 @@ Vagrant.configure("2") do |config|
   # to skip installing and copying to Vagrant's shelf.
   # config.berkshelf.except = []
 
-  config.omnibus.chef_version = :latest
-
   config.vm.provision "chef_solo" do |chef|
+    chef.channel = "stable"
+    chef.version = "12.10.24"
     chef.synced_folder_type = "nfs"
     chef.data_bags_path = "data_bags"
     chef.cookbooks_path = "cookbooks"
-	chef.add_recipe "chef-solo-search"
+    chef.add_recipe "chef-solo-search"
     chef.add_recipe "openvpn::server"
     chef.add_recipe "openvpn::users"
     chef.json = {
