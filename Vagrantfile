@@ -65,7 +65,7 @@ Vagrant.configure("2") do |config|
  # config.berkshelf.enabled = true
 
   config.berkshelf.enabled = true
-  config.berkshelf.berksfile_path = "./cookbooks/openvpn/Berksfile"
+  config.berkshelf.berksfile_path = "./cookbooks/en_deploy_openvpn/Berksfile"
   
   # An array of symbols representing groups of cookbook described in the Vagrantfile
   # to exclusively install and copy to Vagrant's shelf.
@@ -81,24 +81,21 @@ Vagrant.configure("2") do |config|
     chef.synced_folder_type = "nfs"
     chef.data_bags_path = "data_bags"
     chef.cookbooks_path = "cookbooks"
-    chef.add_recipe "chef-solo-search"
-    chef.add_recipe "openvpn::server"
-    chef.add_recipe "openvpn::users"
+    chef.add_recipe "en_deploy_openvpn"
     chef.json = {
       "openvpn" => {
         "script_security" => 2,
         "push_routes" => [
-			"push 'route 10.0.2.0 255.255.255.0'"
+                       "push 'route 10.0.2.0 255.255.255.0'"
         ],
-		"key" => {
-		  "country" => "RO",
-		  "province" => "CJ",
-		  "city" => "Cluj Napoca",
-		  "org" => "Endava",
-		  "email" => "xanto@egaming.ro"
-		}
+               "key" => {
+                 "country" => "RO",
+                 "province" => "CJ",
+                 "city" => "Cluj Napoca",
+                 "org" => "Endava",
+                 "email" => "xanto@egaming.ro"
+               }
       }
     }
   end
-
 end
