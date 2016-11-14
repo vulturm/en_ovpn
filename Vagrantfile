@@ -7,6 +7,9 @@ Vagrant.configure("2") do |config|
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
 
+  #-- don't update guest tools inside the VM
+  config.vbguest.auto_update = false
+
   config.vm.hostname = "openvpn"
 
   config.vm.box = "centos/7"
