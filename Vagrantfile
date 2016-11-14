@@ -78,6 +78,7 @@ Vagrant.configure("2") do |config|
     chef.synced_folder_type = "nfs"
     chef.data_bags_path = "data_bags"
     chef.cookbooks_path = "cookbooks"
+	chef.add_recipe "chef-solo-search"
     chef.add_recipe "openvpn::server"
     chef.add_recipe "openvpn::users"
     chef.json = {
