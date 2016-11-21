@@ -59,9 +59,9 @@ else
     execute "create-openvpn-tar-#{u['id']}" do
       cwd node['openvpn']['key_dir']
       command <<-EOH
-        tar zcf #{u['id']}.tar.gz #{node['openvpn']['signing_ca_cert'].gsub(/#{node['openvpn']['key_dir']}\//, '')} #{u['id']}.crt #{u['id']}.key #{node['openvpn']['client_prefix']}-#{u['id']}.conf #{node['openvpn']['client_prefix']}-#{u['id']}.ovpn
+        tar zcf #{node['openvpn']['tar_path']}/#{u['id']}.tar.gz #{node['openvpn']['signing_ca_cert'].gsub(/#{node['openvpn']['key_dir']}\//, '')} #{u['id']}.crt #{u['id']}.key #{node['openvpn']['client_prefix']}-#{u['id']}.conf #{node['openvpn']['client_prefix']}-#{u['id']}.ovpn
       EOH
-      not_if { ::File.exist?("#{node['openvpn']['key_dir']}/#{u['id']}.tar.gz") }
+      not_if { ::File.exist?("#{node['openvpn']['tar_path']}/#{u['id']}.tar.gz") }
     end
   end
 end
