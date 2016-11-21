@@ -20,7 +20,14 @@ if ! defined?(ENV['EASY_RSA'])
   exit 1
 end
 
-desc "Create a tar file for the specified user in /tmp."
+if (ENV['TAR_PATH'] == nil)
+  raise "'TAR_PATH' is missing. Declare it and try again."
+  exit 1
+else
+  tar_path = ENV['TAR_PATH']
+end
+
+desc "Create a tar file for the specified user in #{tar_path}"
 task :client do
   Dir.chdir(ENV['PWD'])
   if (ENV['KEY_DIR'] == nil)
@@ -73,7 +80,6 @@ EOF
   puts "* Create .tar.gz archive for #{usercn}."
   sh %{(cd #{keydir} && tar zcf #{usercn}.tar.gz <%= node['openvpn']['signing_ca_cert'].gsub(/#{node['openvpn']['key_dir']}\//, '') %> #{usercn}.crt #{usercn}.key #{usercn}.conf #{usercn}.ovpn)}
   sh %{chmod 0600 #{keydir}/#{usercn}.tar.gz}
-  tar_path = "/tmp"
   sh %{cp #{keydir}/#{usercn}.tar.gz #{tar_path}/}
   sh %{rm #{keydir}/#{usercn}.*}
   puts "* Done, #{usercn} keys are in #{tar_path}/#{usercn}.tar.gz"
