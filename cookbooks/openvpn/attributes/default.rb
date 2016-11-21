@@ -94,6 +94,7 @@ when 'client'
 when 'server'
   default['openvpn']['config']['server'] = "#{node['openvpn']['subnet']} #{node['openvpn']['netmask']}"
   default['openvpn']['config']['dev'] = 'tun0'
+  default['openvpn']['config']['ifconfig-pool-persist'] = ips.txt
 when 'server-bridge'
   default['openvpn']['config']['dev'] = 'tap0'
 end
