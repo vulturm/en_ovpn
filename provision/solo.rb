@@ -1,14 +1,15 @@
+current_dir = File.dirname(__FILE__)
 node_name "devops-ovpn"
 file_cache_path    "/var/chef/cache"
 file_backup_path   "/var/chef/backup"
-cookbook_path ["../cookbooks"]
+cookbook_path ["#{current_dir}/../cookbooks"]
 role_path []
 log_level :info
 verbose_logging false
 
 encrypted_data_bag_secret nil
 
-data_bag_path "../data_bags"
+data_bag_path "#{current_dir}/../data_bags"
 
 node_path []
 
@@ -20,4 +21,4 @@ https_proxy_user nil
 https_proxy_pass nil
 no_proxy nil
 
-Chef::Config.from_file "custom-config.rb"
+Chef::Config.from_file "#{current_dir}/custom-config.rb"
