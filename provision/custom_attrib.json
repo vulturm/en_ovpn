@@ -1,0 +1,26 @@
+{
+  "openvpn": {
+    "script_security": 2,
+    "push_routes": [
+      "10.9.8.0 255.255.255.0"
+    ],
+    "gateway": "ec2-54-87-255-82.compute-1.amazonaws.com",
+    "config": {
+      "proto": "tcp",
+      "port": 45654
+    },
+    "client_prefix": "aws_devops",
+    "signing_ca_cert": "/etc/openvpn/keys/aws_devops.crt",
+    "signing_ca_key": "/etc/openvpn/keys/aws_devops.key",
+    "key": {
+      "country": "RO",
+      "province": "CJ",
+      "city": "Cluj Napoca",
+      "org": "Endava",
+      "email": "ROCLDDevOps@endava.com"
+    }
+  },
+  "run_list": [
+    "recipe[en_deploy_openvpn]"
+  ]
+}
