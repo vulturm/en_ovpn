@@ -1,3 +1,13 @@
+#-- aws
+for the vpn instance:
+ Network & Security -> Network Interfaces -> Actions -> Change Source/Dest. Check. -> Disable
+
+#-- vagrant
 chef gem install pristine wdm bundle
 chef gem pristine wdm --version 0.1.1
 vagrant plugin install vagrant-winnfsd
+
+#-- standalone
+cd 'provision' directory
+chmod +x provision.sh
+./provision.sh
