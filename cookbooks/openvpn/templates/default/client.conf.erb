@@ -17,3 +17,6 @@ cert <%= @client_cn %>.crt
 key <%= @client_cn %>.key
 comp-lzo
 verb 3
+cipher AES-256-CBC
+# Silence repeating messages
+mute 20

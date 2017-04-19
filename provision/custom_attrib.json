@@ -8,6 +8,7 @@
     "gateway": "ec2-54-87-255-82.compute-1.amazonaws.com",
     "config": {
       "proto": "tcp",
+      "cipher": "AES-256-CBC",
       "port": 45654
     },
     "client_prefix": "aws_devops",
