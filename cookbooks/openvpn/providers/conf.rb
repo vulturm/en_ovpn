@@ -15,6 +15,10 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
+# rubocop:disable Metrics/MethodLength
+# rubocop:disable Metrics/BlockLength
+#
 
 use_inline_resources if defined?(use_inline_resources)
 
@@ -24,7 +28,7 @@ action :create do
     source "#{new_resource.name}.conf.erb"
     owner 'root'
     group 'root'
-    mode 0644
+    mode 0o644
     variables(
       config: new_resource.config || node['openvpn']['config'],
       push_routes: new_resource.push_routes || node['openvpn']['push_routes'],
@@ -32,7 +36,6 @@ action :create do
       client_cn: node['openvpn']['client_cn']
     )
     helpers do
-      # rubocop:disable Metrics/MethodLength
       def render_push_options(push_options)
         return [] if push_options.nil?
         push_options.each_with_object([]) do |(option, conf), m|
@@ -46,7 +49,6 @@ action :create do
           end
         end
       end
-      # rubocop:enable Metrics/MethodLength
     end
   end
 end

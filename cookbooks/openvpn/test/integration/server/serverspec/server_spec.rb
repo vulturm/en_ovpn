@@ -1,4 +1,6 @@
 # Encoding: utf-8
+# rubocop:disable Metrics/BlockLength
+#
 require 'spec_helper'
 
 context 'Config' do

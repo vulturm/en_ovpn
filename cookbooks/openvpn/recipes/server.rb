@@ -142,7 +142,7 @@ end
 
 # Make a world readable copy of the CRL
 remote_file '/etc/openvpn/crl.pem' do
-  mode   0644
+  mode   0o644
   source "file://#{node['openvpn']['key_dir']}/crl.pem"
 end
 

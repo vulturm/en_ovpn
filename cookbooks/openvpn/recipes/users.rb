@@ -16,6 +16,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+# rubocop:disable Metrics/BlockLength
+#
 
 def chef_solo_search_installed?
   klass = ::Search.const_get('Helper')
