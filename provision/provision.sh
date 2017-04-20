@@ -4,7 +4,7 @@
 # Author: Mihai Vultur <mihai.vultur@endava.com>
 #
 
-CHEF_VERSION="12.10.24"
+CHEF_VERSION="12.19.36"
 PROVISION_DIR=$(pwd)
 if [[ -z "$(rpm -qa | grep chef-${CHEF_VERSION})" ]]; then
   curl -L https://omnitruck.chef.io/install.sh | sudo bash -s -- -v $CHEF_VERSION
