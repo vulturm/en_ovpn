@@ -5,7 +5,17 @@
 #
 
 CHEF_VERSION="12.19.36"
-PROVISION_DIR=$(pwd)
+if [[ -z $1 ]]; then
+  PROVISION_DIR=$(pwd)
+else
+  PROVISION_DIR=$1
+fi
+
+if [[ ! -f ${PROVISION_DIR}/solo.rb ]]; then
+  echo "Missing 'chef-solo' config"
+  exit 1
+fi
+
 if [[ -z "$(rpm -qa | grep chef-${CHEF_VERSION})" ]]; then
   curl -L https://omnitruck.chef.io/install.sh | sudo bash -s -- -v $CHEF_VERSION
 fi
