@@ -4,7 +4,7 @@
 # Author: Mihai Vultur <mihai.vultur@endava.com>
 #
 
-CHEF_VERSION="12.19.36"
+CHEF_VERSION="12.10.24"
 if [[ -z $1 ]]; then
   PROVISION_DIR=$(pwd)
 else
