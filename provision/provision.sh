@@ -16,9 +16,14 @@ if [[ ! -f ${PROVISION_DIR}/solo.rb ]]; then
   exit 1
 fi
 
+NEEDS_ROOT=""
+if [[ "$EUID" -ne 0 ]]; then
+  NEEDS_ROOT="sudo "
+fi
+
 if [[ -z "$(rpm -qa | grep chef-${CHEF_VERSION})" ]]; then
-  curl -L https://omnitruck.chef.io/install.sh | sudo bash -s -- -v $CHEF_VERSION
+  curl -L https://omnitruck.chef.io/install.sh | $NEEDS_ROOT bash -s -- -v $CHEF_VERSION
 fi
 if [[ $? -eq 0 ]]; then
-  /opt/chef/embedded/bin/ruby /bin/chef-solo --config ${PROVISION_DIR}/solo.rb --json-attributes ${PROVISION_DIR}/custom_attrib.json --log_level info --force-formatter
+  $NEEDS_ROOT /opt/chef/embedded/bin/ruby /bin/chef-solo --config ${PROVISION_DIR}/solo.rb --json-attributes ${PROVISION_DIR}/custom_attrib.json --log_level info --force-formatter
 fi
