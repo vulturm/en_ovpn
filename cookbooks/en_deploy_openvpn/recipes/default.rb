@@ -1,6 +1,12 @@
 include_recipe 'chef-solo-search'
 include_recipe 'openvpn::server'
 node.default['openvpn']['tar_path'] = '/home/centos/keys'
+
+directory node['openvpn']['tar_path'] do
+  recursive true
+  action :create
+end
+
 link "#{node['openvpn']['key_dir']}/ca.key" do
   to node['openvpn']['signing_ca_key']
   not_if { ::File.exist? "#{node['openvpn']['key_dir']}/ca.key" }
